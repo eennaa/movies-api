@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Movie::class, 100)->create();
-        // $this->call(UsersTableSeeder::class);
+        $this->call(MoviesTableSeeder::class);
     }
 }
