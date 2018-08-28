@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Movie;
 
 class MovieController extends Controller
 {
@@ -13,7 +14,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        return Movie::all();
     }
 
     /**
@@ -34,7 +35,9 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $movie = Movie::create($request->all());
+
+        return $movie;
     }
 
     /**
@@ -45,7 +48,7 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        //
+        return Movie::findOrFail($id);
     }
 
     /**
@@ -68,7 +71,10 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $movie = Movie::findOrFail($id);
+        $movie->update($request->all());
+
+        return $movie;
     }
 
     /**
@@ -79,6 +85,8 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Movie::destroy($id);
+
+        return "This movie has been deleted";
     }
 }
