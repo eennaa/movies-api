@@ -14,9 +14,15 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Movie::all();
+        $searchTerm = $request->query('title');
+        if ( $searchTerm) {
+            return Movie::where('title', 'LIKE', '%'.$searchTerm.'%')->get();
+        } else {
+            return Movie::all();
+        }
+
     }
 
     /**
