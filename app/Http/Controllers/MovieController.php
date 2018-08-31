@@ -18,7 +18,7 @@ class MovieController extends Controller
     {
         $searchTerm = $request->query('title');
         if ( $searchTerm) {
-            return Movie::where('title', 'LIKE', '%'.$searchTerm.'%')->get();
+            return Movie::search($searchTerm);
         } else {
             return Movie::all();
         }
