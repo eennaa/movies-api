@@ -10,7 +10,7 @@ class Movie extends Model
         'title', 'director', 'imageURL', 'duration', 'releaseDate', 'genre'
     ];
 
-    public static function search ($searchTerm) {
-        return self::where('title', 'LIKE', '%'.$searchTerm.'%')->get();
+    public static function search ($searchTerm, $skip, $take) {
+        return self::where('title', 'LIKE', '%'.$searchTerm.'%')->skip($skip)->take($take)->get();
     }
 }
